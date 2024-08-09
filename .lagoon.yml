@@ -42,14 +42,6 @@ tasks:
         command: /app/vendor/bin/govcms-update_site_alias
         service: cli
         shell: bash
-    ## START SaaS-only
-    - run:
-        name: Perform GovCMS platform validations
-        command: 'shipshape -f /app/vendor/govcms/scaffold-tooling/shipshape.yml --exclude-db --error-code'
-        service: cli
-        shell: bash
-        when: withDefault("GOVCMS_SKIP_AUDIT", false) == false
-    ## END SaaS-only
     - run:
         name: Synchronise the database
         command: /app/vendor/bin/govcms-db-sync
